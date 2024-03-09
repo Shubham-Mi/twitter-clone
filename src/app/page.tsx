@@ -11,7 +11,7 @@ export default function Home() {
     <div className={inter.className}>
       <div className="grid grid-cols-12 h-screen w-screen px-14">
         <div className="col-span-3">
-          <div className="text-3xl hover:bg-background-hover h-fit rounded-full p-3 cursor-pointer w-fit">
+          <div className="text-3xl hover:bg-background-hover h-fit rounded-full p-3 cursor-pointer w-fit transition-all">
             <FaXTwitter />
           </div>
           <Sidebar />
