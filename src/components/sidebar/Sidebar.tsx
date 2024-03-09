@@ -46,7 +46,7 @@ function Sidebar() {
           );
         })}
       </ul>
-      <button className="bg-[#1d9bf0] rounded-full mt-4 p-4 w-full">
+      <button className="bg-[#1d9bf0] rounded-full mt-4 p-4 w-full font-bold">
         Post
       </button>
     </div>
