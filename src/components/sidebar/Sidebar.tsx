@@ -38,7 +38,7 @@ function Sidebar() {
           return (
             <li
               key={key}
-              className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-hover-background w-fit rounded-full"
+              className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-background-hover w-fit rounded-full"
             >
               <span>{item.icon}</span>
               <span>{item.title}</span>
@@ -46,7 +46,7 @@ function Sidebar() {
           );
         })}
       </ul>
-      <button className="bg-[#1d9bf0] rounded-full mt-4 p-4 w-full font-bold">
+      <button className="bg-primary-color hover:bg-primary-color-hover rounded-full mt-4 p-4 w-full font-bold">
         Post
       </button>
     </div>
