@@ -46,7 +46,7 @@ function Sidebar() {
           );
         })}
       </ul>
-      <button className="bg-primary-color hover:bg-primary-color-hover rounded-full mt-4 p-4 w-full font-bold">
+      <button className="bg-primary-color hover:bg-primary-color-hover rounded-full mt-4 p-4 w-full font-bold transition-all">
         Post
       </button>
     </div>
