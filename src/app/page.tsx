@@ -13,7 +13,15 @@ export default function Home() {
           </div>
           <Sidebar />
         </div>
-        <div className="col-span-6 border-x-[1px] border-border-color">
+        <div className="col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
           <FeedCard />
         </div>
         <div className="col-span-3">Suggestions</div>
