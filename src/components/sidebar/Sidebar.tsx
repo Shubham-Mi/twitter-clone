@@ -38,7 +38,7 @@ function Sidebar() {
           return (
             <li
               key={key}
-              className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-background-hover w-fit rounded-full transition-all"
+              className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-background-hover w-fit rounded-full transition-all cursor-pointer"
             >
               <span>{item.icon}</span>
               <span>{item.title}</span>
