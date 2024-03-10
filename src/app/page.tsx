@@ -2,6 +2,7 @@ import React from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import Sidebar from "@/components/sidebar";
 import FeedCard from "@/components/FeedCard";
+import GoogleSignIn from "@/components/GoogleSignIn";
 
 export default function Home() {
   return (
@@ -24,7 +25,9 @@ export default function Home() {
           <FeedCard />
           <FeedCard />
         </div>
-        <div className="col-span-3">Suggestions</div>
+        <div className="col-span-3">
+          <GoogleSignIn />
+        </div>
       </div>
     </div>
   );
