@@ -1,34 +1,23 @@
+"use client";
 import React from "react";
-import { FaXTwitter } from "react-icons/fa6";
-import Sidebar from "@/components/sidebar";
-import FeedCard from "@/components/FeedCard";
-import GoogleSignIn from "@/components/GoogleSignIn";
+import Home from "./Home";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
-export default function Home() {
+const queryClient = new QueryClient();
+
+export default function App() {
   return (
     <div>
-      <div className="grid grid-cols-12 h-screen w-screen px-14">
-        <div className="col-span-3">
-          <div className="text-3xl hover:bg-background-hover h-fit rounded-full p-3 cursor-pointer w-fit transition-all">
-            <FaXTwitter />
-          </div>
-          <Sidebar />
-        </div>
-        <div className="col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-          <FeedCard />
-        </div>
-        <div className="col-span-3">
-          <GoogleSignIn />
-        </div>
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <GoogleOAuthProvider clientId="8232000391-19qf54pm6v1faf8igjk0sagmjnusd2p1.apps.googleusercontent.com">
+          <Home />
+          <Toaster />
+          <ReactQueryDevtools />
+        </GoogleOAuthProvider>
+      </QueryClientProvider>
     </div>
   );
 }
