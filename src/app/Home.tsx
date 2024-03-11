@@ -1,4 +1,5 @@
 import FeedCard from "@/components/FeedCard";
+import NewTweetCard from "@/components/NewTweetCard";
 import Sidebar from "@/components/sidebar";
 import React from "react";
 
@@ -10,6 +11,7 @@ export default function Home() {
           <Sidebar />
         </div>
         <div className="col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
+          <NewTweetCard />
           <FeedCard />
           <FeedCard />
           <FeedCard />
