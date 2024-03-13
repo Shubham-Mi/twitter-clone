@@ -34,7 +34,7 @@ export default function GoogleSignIn() {
   );
 
   return (
-    <div className="mb-4 pl-3 pr-7 py-3 rounded-full hover:bg-background-hover w-fit">
+    <div className="mb-4 pl-3 pr-7 py-3 rounded-full hover:bg-background-hover w-fit cursor-pointer">
       {user ? (
         <div className="flex gap-4 text-xl">
           <Image
