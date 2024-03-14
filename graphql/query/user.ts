@@ -9,13 +9,18 @@ export const verifyUserGoogleTokenQuery = graphql(`
 
 export const getCurrentUserQuery = graphql(`
   #graphql
-  query Query {
+  query GetCurrentUser {
     getCurrentUser {
       id
       email
       firstName
       lastName
       profileImageUrl
+      tweets {
+        id
+        content
+        imageUrl
+      }
     }
   }
 `);
