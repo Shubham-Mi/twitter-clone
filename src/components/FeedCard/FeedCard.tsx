@@ -6,9 +6,9 @@ import {
   FaRegHeart,
   FaRetweet,
 } from "react-icons/fa6";
-import FeedCard from "./Feedcard.types";
+import FeedCardProps from "./Feedcard.types";
 
-const FeedCard: React.FC<FeedCard> = (props) => {
+const FeedCard: React.FC<FeedCardProps> = (props) => {
   const { data } = props;
   return (
     <div>
