@@ -1,10 +1,13 @@
 import Image from "next/image";
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { useCurrentUser } from "../../../hooks/user";
 import { FaImage } from "react-icons/fa6";
+import { useCreateTweet } from "../../../hooks/tweet";
 
 export default function NewTweetCard() {
+  const [content, setContent] = useState("");
   const { user } = useCurrentUser();
+  const { mutate } = useCreateTweet();
 
   const handleImageSelect = useCallback(() => {
     const input = document.createElement("input");
@@ -12,6 +15,11 @@ export default function NewTweetCard() {
     input.setAttribute("accept", "image/*");
     input.click();
   }, []);
+
+  const handleCreateTweet = useCallback(() => {
+    mutate({ content });
+    setContent("");
+  }, [content, mutate]);
 
   return (
     <div>
@@ -32,8 +40,8 @@ export default function NewTweetCard() {
         <div className="col-span-11">
           {/* <p className="text-justify">What is happening?!</p> */}
           <textarea
-            name=""
-            id=""
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
             rows={3}
             className="w-full bg-transparent text-xl p-3 border-b border-border-color overflow-visible focus:outline-none"
             placeholder="What is happening?!"
@@ -43,7 +51,10 @@ export default function NewTweetCard() {
               <FaImage onClick={handleImageSelect} className="text-xl" />
             </div>
             <div>
-              <button className="bg-primary-color hover:bg-primary-color-hover rounded-full px-4 py-2 w-fit font-bold transition-all">
+              <button
+                onClick={handleCreateTweet}
+                className="bg-primary-color hover:bg-primary-color-hover rounded-full px-4 py-2 w-fit font-bold transition-all"
+              >
                 Post
               </button>
             </div>
