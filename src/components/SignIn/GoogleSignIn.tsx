@@ -8,7 +8,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useCurrentUser } from "../../../hooks/user";
 import Image from "next/image";
 
-export default function GoogleSignIn() {
+export default function SignIn() {
   const { user } = useCurrentUser();
   const queryClient = useQueryClient();
 
@@ -34,7 +34,7 @@ export default function GoogleSignIn() {
   );
 
   return (
-    <div className="mb-4 pl-3 pr-7 py-3 rounded-full hover:bg-background-hover w-fit cursor-pointer">
+    <div className="mb-4 sm:pl-3 sm:pr-7 sm:py-3 rounded-full hover:bg-background-hover w-fit cursor-pointer">
       {user ? (
         <div className="flex gap-4 text-xl">
           <Image
@@ -48,13 +48,12 @@ export default function GoogleSignIn() {
             width={50}
             height={50}
           />
-          <h3>
+          <h3 className="hidden sm:block">
             {user.firstName} {user.lastName}
           </h3>
         </div>
       ) : (
         <div>
-          <h1 className="my-2 text-2xl">Sign In</h1>
           <GoogleLogin onSuccess={handleGoogleLogin} />
         </div>
       )}
