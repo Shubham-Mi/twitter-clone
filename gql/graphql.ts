@@ -35,9 +35,15 @@ export type Query = {
   __typename?: 'Query';
   getAllTweets?: Maybe<Array<Maybe<Tweet>>>;
   getCurrentUser?: Maybe<User>;
+  getCurrentUserTweets?: Maybe<Array<Maybe<Tweet>>>;
   getUserTweets?: Maybe<Array<Maybe<Tweet>>>;
   health?: Maybe<Scalars['String']['output']>;
   verifyGoogleToken?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type QueryGetUserTweetsArgs = {
+  id: Scalars['String']['input'];
 };
 
 
