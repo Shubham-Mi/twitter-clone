@@ -34,8 +34,8 @@ export type MutationCreateTweetArgs = {
 export type Query = {
   __typename?: 'Query';
   getAllTweets?: Maybe<Array<Maybe<Tweet>>>;
-  getAllUserTweets?: Maybe<Array<Maybe<Tweet>>>;
   getCurrentUser?: Maybe<User>;
+  getUserTweets?: Maybe<Array<Maybe<Tweet>>>;
   health?: Maybe<Scalars['String']['output']>;
   verifyGoogleToken?: Maybe<Scalars['String']['output']>;
 };

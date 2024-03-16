@@ -4,35 +4,49 @@ import { BsBell, BsBookmark, BsEnvelope, BsSearch } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import GoogleSignIn from "../SignIn";
 import { FaXTwitter } from "react-icons/fa6";
-
-const sidebarMenuItems: SidebarButton[] = [
-  {
-    title: "Home",
-    icon: <GoHomeFill />,
-  },
-  {
-    title: "Explore",
-    icon: <BsSearch />,
-  },
-  {
-    title: "Notifications",
-    icon: <BsBell />,
-  },
-  {
-    title: "Messages",
-    icon: <BsEnvelope />,
-  },
-  {
-    title: "Bookmarks",
-    icon: <BsBookmark />,
-  },
-  {
-    title: "Profile",
-    icon: <BiUser />,
-  },
-];
+import Link from "next/link";
+import { useCurrentUser } from "../../../hooks/user";
+import { useMemo } from "react";
 
 function Sidebar() {
+  const { user } = useCurrentUser();
+
+  const sidebarMenuItems: SidebarButton[] = useMemo(
+    () => [
+      {
+        title: "Home",
+        icon: <GoHomeFill />,
+        link: "/home",
+      },
+      {
+        title: "Explore",
+        icon: <BsSearch />,
+        link: "/home",
+      },
+      {
+        title: "Notifications",
+        icon: <BsBell />,
+        link: "/home",
+      },
+      {
+        title: "Messages",
+        icon: <BsEnvelope />,
+        link: "/home",
+      },
+      {
+        title: "Bookmarks",
+        icon: <BsBookmark />,
+        link: "/home",
+      },
+      {
+        title: "Profile",
+        icon: <BiUser />,
+        link: `/${user?.id}`,
+      },
+    ],
+    [user?.id]
+  );
+
   return (
     <div className="h-screen flex flex-col justify-between">
       <div>
@@ -43,12 +57,14 @@ function Sidebar() {
           <ul>
             {sidebarMenuItems.map((item, key) => {
               return (
-                <li
-                  key={key}
-                  className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-background-hover w-fit rounded-full transition-all cursor-pointer"
-                >
-                  <span>{item.icon}</span>
-                  <span className="hidden sm:inline">{item.title}</span>
+                <li key={key}>
+                  <Link
+                    className="flex justify-start gap-4 my-1 pl-3 pr-7 py-3 hover:bg-background-hover w-fit rounded-full transition-all cursor-pointer"
+                    href={item.link}
+                  >
+                    <span>{item.icon}</span>
+                    <span className="hidden sm:inline">{item.title}</span>
+                  </Link>
                 </li>
               );
             })}
