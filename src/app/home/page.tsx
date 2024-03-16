@@ -4,8 +4,9 @@ import NewTweetCard from "@/components/NewTweetCard";
 import FeedCard from "@/components/FeedCard";
 import { Tweet } from "../../../gql/graphql";
 import { useGetAllTweets } from "../../../hooks/tweet";
+import { NextPage } from "next";
 
-export default function Page() {
+const HomePage: NextPage = () => {
   const { tweets } = useGetAllTweets();
 
   return (
@@ -16,4 +17,6 @@ export default function Page() {
       )}
     </div>
   );
-}
+};
+
+export default HomePage;
