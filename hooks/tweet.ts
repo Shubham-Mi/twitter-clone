@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { graphQLClient } from "../clients/api";
-import { getAllTweets } from "../graphql/query/tweet";
+import { getAllTweetsQuery } from "../graphql/query/tweet";
 import { createTweet } from "../graphql/mutation/tweet";
 import { CreateTweet } from "../gql/graphql";
 import toast from "react-hot-toast";
@@ -25,7 +25,7 @@ export const useCreateTweet = () => {
 export const useGetAllTweets = () => {
   const query = useQuery({
     queryKey: ["all-tweets"],
-    queryFn: () => graphQLClient.request(getAllTweets),
+    queryFn: () => graphQLClient.request(getAllTweetsQuery),
   });
 
   return { ...query, tweets: query.data?.getAllTweets };

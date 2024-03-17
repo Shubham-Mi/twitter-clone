@@ -1,25 +1,60 @@
 import Image from "next/image";
+import axios from "axios";
 import React, { useCallback, useState } from "react";
 import { useCurrentUser } from "../../../hooks/user";
 import { FaImage } from "react-icons/fa6";
 import { useCreateTweet } from "../../../hooks/tweet";
+import { graphQLClient } from "../../../clients/api";
+import { getSignedUrlQuery } from "../../../graphql/query/tweet";
+import toast from "react-hot-toast";
 
 export default function NewTweetCard() {
   const [content, setContent] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const { user } = useCurrentUser();
   const { mutate } = useCreateTweet();
+
+  const handleImageUpload = useCallback((input: HTMLInputElement) => {
+    return async (event: Event) => {
+      event.preventDefault();
+
+      const file: File | undefined | null = input.files?.item(0);
+      if (!file) return;
+
+      const { getSignedUrl } = await graphQLClient.request(getSignedUrlQuery, {
+        imageName: file.name,
+        imageType: file.type,
+      });
+
+      if (getSignedUrl) {
+        toast.loading("Uploading image", { id: file.name });
+        await axios.put(getSignedUrl, file, {
+          headers: {
+            "Content-Type": file.type,
+          },
+        });
+        toast.success("Image uploaded", { id: file.name });
+
+        const url = new URL(getSignedUrl);
+        const uploadedImageUrl = `${url.origin}${url.pathname}`;
+        setImageUrl(uploadedImageUrl);
+      }
+    };
+  }, []);
 
   const handleImageSelect = useCallback(() => {
     const input = document.createElement("input");
     input.setAttribute("type", "file");
     input.setAttribute("accept", "image/*");
+    input.addEventListener("change", handleImageUpload(input));
     input.click();
-  }, []);
+  }, [handleImageUpload]);
 
   const handleCreateTweet = useCallback(() => {
-    mutate({ content });
+    mutate({ content, imageUrl });
     setContent("");
-  }, [content, mutate]);
+    setImageUrl("");
+  }, [content, imageUrl, mutate]);
 
   return (
     <div>
@@ -46,6 +81,14 @@ export default function NewTweetCard() {
             className="w-full bg-transparent text-xl p-3 border-b border-border-color overflow-visible focus:outline-none"
             placeholder="What is happening?!"
           ></textarea>
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt="uploaded-image"
+              width={300}
+              height={300}
+            />
+          )}
           <div className="flex justify-between pr-10 mt-4 items-center">
             <div>
               <FaImage onClick={handleImageSelect} className="text-xl" />

@@ -34,6 +34,9 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
             </Link>
           </div>
           <p className="text-justify">{data.content}</p>
+          {data.imageUrl && (
+            <Image src={data.imageUrl} alt="image" width={300} height={300} />
+          )}
           <div className="flex justify-between pr-10 mt-4">
             <div>
               <FaRegComment />
