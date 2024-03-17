@@ -1,6 +1,6 @@
 "use client";
 import { FaArrowLeft } from "react-icons/fa6";
-import { useCurrentUser, useUserById } from "../../../hooks/user";
+import { useUserById } from "../../../hooks/user";
 import Image from "next/image";
 import FeedCard from "@/components/FeedCard";
 import { Tweet } from "../../../gql/graphql";
@@ -18,7 +18,9 @@ export default function Page({ params }: { params: { userId: string } }) {
           <h1 className="text-2xl font-bold">
             {user?.firstName} {user?.lastName}
           </h1>
-          <h1 className="text-md text-slate-400">100 tweets</h1>
+          <h1 className="text-md text-slate-400">
+            {user?.tweets?.length} Posts
+          </h1>
         </div>
       </nav>
       <div className="p-4 border-b border-border-color">

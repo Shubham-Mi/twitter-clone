@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { graphQLClient } from "../clients/api";
-import { getCurrentUserQuery, getUserById } from "../graphql/query/user";
+import { getCurrentUserQuery, getUserByIdQuery } from "../graphql/query/user";
 
 export const useCurrentUser = () => {
   const query = useQuery({
@@ -14,7 +14,7 @@ export const useCurrentUser = () => {
 export const useUserById = (id: string) => {
   const query = useQuery({
     queryKey: ["user"],
-    queryFn: () => graphQLClient.request(getUserById, { id }),
+    queryFn: () => graphQLClient.request(getUserByIdQuery, { id }),
   });
 
   return { ...query, user: query.data?.getUserById };

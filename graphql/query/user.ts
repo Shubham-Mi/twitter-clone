@@ -31,7 +31,7 @@ export const getCurrentUserQuery = graphql(`
   }
 `);
 
-export const getUserById = graphql(`
+export const getUserByIdQuery = graphql(`
   #graphql
   query GetUserById($id: ID!) {
     getUserById(id: $id) {
