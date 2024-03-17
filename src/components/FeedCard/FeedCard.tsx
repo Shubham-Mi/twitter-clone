@@ -7,6 +7,7 @@ import {
   FaRetweet,
 } from "react-icons/fa6";
 import FeedCardProps from "./Feedcard.types";
+import Link from "next/link";
 
 const FeedCard: React.FC<FeedCardProps> = (props) => {
   const { data } = props;
@@ -27,8 +28,10 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
           />
         </div>
         <div className="col-span-11">
-          <div className="font-bold">
-            {data.author?.firstName} {data.author?.lastName}
+          <div className="font-bold hover:underline">
+            <Link href={`/${data.author?.id}`}>
+              {data.author?.firstName} {data.author?.lastName}
+            </Link>
           </div>
           <p className="text-justify">{data.content}</p>
           <div className="flex justify-between pr-10 mt-4">
