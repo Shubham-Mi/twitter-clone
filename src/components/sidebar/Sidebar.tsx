@@ -51,7 +51,9 @@ function Sidebar() {
     <div className="h-screen flex flex-col justify-between">
       <div>
         <div className="text-3xl hover:bg-background-hover h-fit rounded-full py-3 sm:px-3 cursor-pointer w-fit transition-all">
-          <FaXTwitter />
+          <Link href={`/home`}>
+            <FaXTwitter />
+          </Link>
         </div>
         <div className="mt-4 text-xl pr-10">
           <ul>
