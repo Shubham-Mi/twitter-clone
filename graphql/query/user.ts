@@ -27,6 +27,18 @@ export const getCurrentUserQuery = graphql(`
           profileImageUrl
         }
       }
+      followers {
+        id
+        email
+        firstName
+        lastName
+      }
+      following {
+        id
+        email
+        firstName
+        lastName
+      }
     }
   }
 `);
@@ -49,6 +61,18 @@ export const getUserByIdQuery = graphql(`
           lastName
           profileImageUrl
         }
+      }
+      followers {
+        id
+        email
+        firstName
+        lastName
+      }
+      following {
+        id
+        email
+        firstName
+        lastName
       }
     }
   }

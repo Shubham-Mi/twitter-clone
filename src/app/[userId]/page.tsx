@@ -38,6 +38,16 @@ export default function Page({ params }: { params: { userId: string } }) {
         <h1 className="text-2xl font-bold mt-5">
           {user?.firstName} {user?.lastName}
         </h1>
+        <div className="flex gap-3">
+          <h1 className="text-md text-slate-400 flex gap-1">
+            <span className="text-white">{user?.following?.length}</span>
+            <span>Following</span>
+          </h1>
+          <h1 className="text-md text-slate-400 flex gap-1">
+            <span className="text-white">{user?.followers?.length}</span>
+            <span>Followers</span>
+          </h1>
+        </div>
       </div>
       <div>
         {user?.tweets?.map((tweet) =>
