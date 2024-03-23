@@ -1,6 +1,6 @@
 import { graphql } from "../../gql";
 
-export const createTweet = graphql(`
+export const createTweetMutation = graphql(`
   #graphql
   mutation CreateTweet($payload: CreateTweet) {
     createTweet(payload: $payload) {

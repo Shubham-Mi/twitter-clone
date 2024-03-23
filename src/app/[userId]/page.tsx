@@ -1,14 +1,21 @@
 "use client";
 import { FaArrowLeft } from "react-icons/fa6";
-import { useCurrentUser, useUserById } from "../../../hooks/user";
+import {
+  useCurrentUser,
+  useFollowUser,
+  useUnfollowUser,
+  useUserById,
+} from "../../../hooks/user";
 import Image from "next/image";
 import FeedCard from "@/components/FeedCard";
 import { Tweet } from "../../../gql/graphql";
-import { useMemo } from "react";
+import { useCallback, useMemo } from "react";
 
 export default function Page({ params }: { params: { userId: string } }) {
   const { user } = useUserById(params.userId);
   const { user: currentUser } = useCurrentUser();
+  const { mutate: mutateFollow } = useFollowUser();
+  const { mutate: mutateUnfollow } = useUnfollowUser();
 
   const isFollowing = useMemo(() => {
     if (!currentUser) return false;
@@ -17,6 +24,14 @@ export default function Page({ params }: { params: { userId: string } }) {
         -1) >= 0
     );
   }, [currentUser, params.userId]);
+
+  const handleFollowUser = useCallback(() => {
+    mutateFollow(params.userId);
+  }, [mutateFollow, params.userId]);
+
+  const handleUnfollowUser = useCallback(() => {
+    mutateUnfollow(params.userId);
+  }, [mutateUnfollow, params.userId]);
 
   return (
     <div>
@@ -65,11 +80,17 @@ export default function Page({ params }: { params: { userId: string } }) {
             {user?.id !== currentUser?.id && (
               <>
                 {isFollowing ? (
-                  <button className="bg-white text-black hover:bg-gray-300 rounded-full px-4 py-2 w-fit font-bold transition-all">
+                  <button
+                    onClick={handleUnfollowUser}
+                    className="bg-white text-black hover:bg-gray-300 rounded-full px-4 py-2 w-fit font-bold transition-all"
+                  >
                     Unfollow
                   </button>
                 ) : (
-                  <button className="bg-white text-black hover:bg-gray-300 rounded-full px-4 py-2 w-fit font-bold transition-all">
+                  <button
+                    onClick={handleFollowUser}
+                    className="bg-white text-black hover:bg-gray-300 rounded-full px-4 py-2 w-fit font-bold transition-all"
+                  >
                     Follow
                   </button>
                 )}
