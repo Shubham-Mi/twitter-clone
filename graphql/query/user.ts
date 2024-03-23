@@ -29,15 +29,21 @@ export const getCurrentUserQuery = graphql(`
       }
       followers {
         id
-        email
         firstName
         lastName
+        profileImageUrl
       }
       following {
         id
-        email
         firstName
         lastName
+        profileImageUrl
+      }
+      recommendedUsers {
+        id
+        firstName
+        lastName
+        profileImageUrl
       }
     }
   }
@@ -64,15 +70,9 @@ export const getUserByIdQuery = graphql(`
       }
       followers {
         id
-        email
-        firstName
-        lastName
       }
       following {
         id
-        email
-        firstName
-        lastName
       }
     }
   }

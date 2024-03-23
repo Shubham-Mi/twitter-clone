@@ -7,7 +7,7 @@ import {
   useUserById,
 } from "../../../hooks/user";
 import Image from "next/image";
-import FeedCard from "@/components/FeedCard";
+import FeedCard from "@/components/feedCard";
 import { Tweet } from "../../../gql/graphql";
 import { useCallback, useMemo } from "react";
 

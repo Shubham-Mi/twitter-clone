@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import NewTweetCard from "@/components/NewTweetCard";
-import FeedCard from "@/components/FeedCard";
+import NewTweetCard from "@/components/newTweetCard";
+import FeedCard from "@/components/feedCard";
 import { Tweet } from "../../../gql/graphql";
 import { useGetAllTweets } from "../../../hooks/tweet";
 import { NextPage } from "next";
