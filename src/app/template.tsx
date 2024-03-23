@@ -1,4 +1,5 @@
 "use client";
+import RecommendBar from "@/components/recommendBar";
 import Sidebar from "@/components/sidebar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -20,7 +21,9 @@ export default function Template({ children }: { children: React.ReactNode }) {
             <div className="container__main col-span-10 sm:col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
               {children}
             </div>
-            <div className="col-span-0 sm:col-span-3"></div>
+            <div className="col-span-0 sm:col-span-3">
+              <RecommendBar />
+            </div>
           </div>
           <Toaster />
           <ReactQueryDevtools />
