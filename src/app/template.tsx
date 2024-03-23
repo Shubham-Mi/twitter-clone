@@ -17,7 +17,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
             <div className="col-span-2 sm:col-span-3">
               <Sidebar />
             </div>
-            <div className="col-span-10 sm:col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
+            <div className="container__main col-span-10 sm:col-span-6 border-x-[1px] border-border-color h-screen overflow-auto">
               {children}
             </div>
             <div className="col-span-0 sm:col-span-3"></div>
