@@ -1,1 +1,1 @@
-export { default } from "./FeedCard";
+export { default } from "./Feedcard";
