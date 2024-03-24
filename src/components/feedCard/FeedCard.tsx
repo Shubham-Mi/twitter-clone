@@ -6,8 +6,12 @@ import {
   FaRegHeart,
   FaRetweet,
 } from "react-icons/fa6";
-import FeedCardProps from "./Feedcard.types";
 import Link from "next/link";
+import { Tweet } from "../../../gql/graphql";
+
+interface FeedCardProps {
+  data: Tweet;
+}
 
 const FeedCard: React.FC<FeedCardProps> = (props) => {
   const { data } = props;
