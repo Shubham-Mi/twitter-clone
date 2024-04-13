@@ -26,6 +26,12 @@ export const getCurrentUserQuery = graphql(`
           lastName
           profileImageUrl
         }
+        likedBy {
+          id
+          firstName
+          lastName
+          profileImageUrl
+        }
       }
       followers {
         id

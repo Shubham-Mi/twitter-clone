@@ -1,6 +1,7 @@
 import Image from "next/image";
-import React from "react";
+import React, { useCallback } from "react";
 import {
+  FaHeart,
   FaRegBookmark,
   FaRegComment,
   FaRegHeart,
@@ -8,9 +9,23 @@ import {
 } from "react-icons/fa6";
 import FeedCardProps from "./Feedcard.types";
 import Link from "next/link";
+import { useLikeTweet, useUnlikeTweet } from "../../../hooks/tweet";
+import { useCurrentUser } from "../../../hooks/user";
 
 const FeedCard: React.FC<FeedCardProps> = (props) => {
   const { data } = props;
+  const { mutate: mutateLike } = useLikeTweet();
+  const { mutate: mutateUnlike } = useUnlikeTweet();
+  const { user } = useCurrentUser();
+
+  const handleLike = useCallback(() => {
+    mutateLike(data.id);
+  }, [data.id, mutateLike]);
+
+  const handleUnlike = useCallback(() => {
+    mutateUnlike(data.id);
+  }, [data.id, mutateUnlike]);
+
   return (
     <div>
       <div className="grid grid-cols-12 gap-2 p-4 border-t border-border-color hover:bg-background-hover cursor-pointer">
@@ -44,8 +59,13 @@ const FeedCard: React.FC<FeedCardProps> = (props) => {
             <div>
               <FaRetweet />
             </div>
-            <div>
-              <FaRegHeart />
+            <div className="flex gap-2 text-base justify-center">
+              {data.likedBy?.find((like) => like?.id === user?.id) ? (
+                <FaHeart onClick={handleUnlike} />
+              ) : (
+                <FaRegHeart onClick={handleLike} />
+              )}
+              <span>{data.likedBy?.length}</span>
             </div>
             <div>
               <FaRegBookmark />

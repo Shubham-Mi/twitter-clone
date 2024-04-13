@@ -14,12 +14,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 const documents = {
     "\n  #graphql\n  mutation CreateTweet($payload: CreateTweet) {\n    createTweet(payload: $payload) {\n      id\n      content\n      author {\n        id\n        email\n        profileImageUrl\n      }\n    }\n  }\n": types.CreateTweetDocument,
+    "\n  #graphql\n  mutation LikeTweet($tweetId: ID!) {\n    likeTweet(tweetId: $tweetId)\n  }\n": types.LikeTweetDocument,
+    "\n  #graphql\n  mutation UnLikeTweet($tweetId: ID!) {\n    unLikeTweet(tweetId: $tweetId)\n  }\n": types.UnLikeTweetDocument,
     "\n  #graphql\n  mutation FollowUser($userId: ID!) {\n    followUser(userId: $userId)\n  }\n": types.FollowUserDocument,
     "\n  #graphql\n  mutation UnfollowUser($userId: ID!) {\n    unfollowUser(userId: $userId)\n  }\n": types.UnfollowUserDocument,
-    "\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n": types.GetAllTweetsDocument,
+    "\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      likedBy {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n": types.GetAllTweetsDocument,
     "\n  #graphql\n  query GetSignedUrl($imageName: String!, $imageType: String!) {\n    getSignedUrl(imageName: $imageName, imageType: $imageType)\n  }\n": types.GetSignedUrlDocument,
     "\n  #graphql\n  query verifyUserGoogleToken($token: String!) {\n    verifyGoogleToken(token: $token)\n  }\n": types.VerifyUserGoogleTokenDocument,
-    "\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n": types.GetCurrentUserDocument,
+    "\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n        likedBy {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n": types.GetCurrentUserDocument,
     "\n  #graphql\n  query GetUserById($id: ID!) {\n    getUserById(id: $id) {\n      id\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n      }\n      following {\n        id\n      }\n    }\n  }\n": types.GetUserByIdDocument,
 };
 
@@ -44,6 +46,14 @@ export function graphql(source: "\n  #graphql\n  mutation CreateTweet($payload: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  #graphql\n  mutation LikeTweet($tweetId: ID!) {\n    likeTweet(tweetId: $tweetId)\n  }\n"): (typeof documents)["\n  #graphql\n  mutation LikeTweet($tweetId: ID!) {\n    likeTweet(tweetId: $tweetId)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  #graphql\n  mutation UnLikeTweet($tweetId: ID!) {\n    unLikeTweet(tweetId: $tweetId)\n  }\n"): (typeof documents)["\n  #graphql\n  mutation UnLikeTweet($tweetId: ID!) {\n    unLikeTweet(tweetId: $tweetId)\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  #graphql\n  mutation FollowUser($userId: ID!) {\n    followUser(userId: $userId)\n  }\n"): (typeof documents)["\n  #graphql\n  mutation FollowUser($userId: ID!) {\n    followUser(userId: $userId)\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -52,7 +62,7 @@ export function graphql(source: "\n  #graphql\n  mutation UnfollowUser($userId: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"): (typeof documents)["\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      likedBy {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"): (typeof documents)["\n  #graphql\n  query GetAllTweets {\n    getAllTweets {\n      id\n      content\n      imageUrl\n      author {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      likedBy {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -64,7 +74,7 @@ export function graphql(source: "\n  #graphql\n  query verifyUserGoogleToken($to
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"): (typeof documents)["\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n        likedBy {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"): (typeof documents)["\n  #graphql\n  query GetCurrentUser {\n    getCurrentUser {\n      id\n      email\n      firstName\n      lastName\n      profileImageUrl\n      tweets {\n        id\n        content\n        imageUrl\n        author {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n        likedBy {\n          id\n          firstName\n          lastName\n          profileImageUrl\n        }\n      }\n      followers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      following {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n      recommendedUsers {\n        id\n        firstName\n        lastName\n        profileImageUrl\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
