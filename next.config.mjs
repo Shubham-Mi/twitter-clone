@@ -20,7 +20,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "shubham-twitter-clone-app.s3.ap-south-1.amazonaws.com",
+        hostname: "shubham-twitter-app.s3.ap-south-1.amazonaws.com",
         port: "",
       },
     ],
